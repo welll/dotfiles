@@ -14,7 +14,7 @@
 	reup = rebase-update # depot_tools specific
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/avenuecode/.gitignore
 	attributesfile = ~/.gitattributes
 
 [pager]
@@ -95,3 +95,12 @@
 	prune = true
 [diff]
 	compactionHeuristic = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Wellington Soares
+	email = well.cco@gmail.com

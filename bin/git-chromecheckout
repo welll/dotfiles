@@ -20,6 +20,7 @@ fi
 active_chrome_url() {
 	osascript -e "tell application \"$app\" to get URL of active tab of front window"
 }
+
 checkout() {
 	url=$(active_chrome_url)
 	if hash hub 2>/dev/null && [[ $url == *"https://github.com"* && $url == *"/pull/"* ]]; then

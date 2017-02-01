@@ -1,7 +1,13 @@
 
-# Load our dotfiles like ~/.bash_prompt, etc…
-#   ~/.extra can be used for settings you don’t want to commit,
+# Load our dotfiles like ~/.bash_prompt, ~/.aliases, ~/.functions, etc…
+
+#   a file ~/.extra will be used for settings we don’t want to commit,
 #   Use it to configure your PATH, thus it being first in line.
+
+# -r
+# file has read permission (for the user running the test)
+# source: http://tldp.org/LDP/abs/html/fto.html
+
 for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
     [ -r "$file" ] && source "$file"
 done
@@ -13,17 +19,20 @@ case $- in
 esac
 
 # generic colouriser
-GRC=`which grc`
-if [ "$TERM" != dumb ] && [ -n "$GRC" ]
-    then
-        alias colourify="$GRC -es --colour=auto"
-        alias configure='colourify ./configure'
-        for app in {diff,make,gcc,g++,ping,traceroute}; do
-            alias "$app"='colourify '$app
-    done
-fi
 
+#GRC=`which grc`
+#if [ "$TERM" != dumb ] && [ -n "$GRC" ]
+#    then
+#        alias colourify="$GRC -es --colour=auto"
+#        alias configure='colourify ./configure'
+#        for app in {diff,make,gcc,g++,ping,traceroute}; do
+#            alias "$app"='colourify '$app
+#    done
+#fi
+
+##
 # highlighting inside manpages and elsewhere
+# https://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
 export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -34,7 +43,6 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 ##
 ## gotta tune that bash_history…
-##
 
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
@@ -63,8 +71,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # ^ the only downside with this is [up] on the readline will go over all history not just this bash session.
 
-
-
 ##
 ## hooking in other apps…
 ##
@@ -73,7 +79,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 
 
 # z beats cd most of the time. `brew install z`

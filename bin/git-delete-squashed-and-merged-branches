@@ -15,7 +15,7 @@
 # this script is a bit of a combo from:
 #   danvk   https://gist.github.com/danvk/a715357444ff3c1a05c4cff730eea8e1
 #   larsks  https://github.com/larsks/github-tools/blob/master/git-is-merged
-#   paulirish
+#   avenuecode
 
 from glob import glob
 import os.path

@@ -1,71 +1,9 @@
+#!/bin/bash
+
 # copy paste this file in bit by bit.
 # don't run it.
-  echo "do not run this script in one go. hit ctrl-c NOW"
-  read -n 1
-
-
-##############################################################################################################
-###  backup old machine's key items
-
-mkdir -p ~/migration/home
-cd ~/migration
-
-# what is worth reinstalling?
-brew leaves      		> brew-list.txt    # all top-level brew installs
-brew cask list 			> cask-list.txt
-npm list -g --depth=0 	> npm-g-list.txt
-
-
-# then compare brew-list to what's in `brew.sh`
-#   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
-
-# let's hold on to these
-
-cp ~/.extra ~/migration/home
-cp ~/.z ~/migration/home
-
-cp -R ~/.ssh ~/migration/home
-cp -R ~/.gnupg ~/migration/home
-
-cp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration  # wifi
-
-cp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration
-cp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration
-
-cp -R ~/Library/Services ~/migration # automator stuff
-
-cp -R ~/Documents ~/migration
-
-cp ~/.bash_history ~/migration # back it up for fun?
-
-cp ~/.gitconfig.local ~/migration
-
-cp ~/.z ~/migration # z history file.
-
-# sublime text settings
-cp "~/Library/Application Support/Sublime Text 3/Packages" ~/migration
-
-
-# iTerm settings.
-  # Prefs, General, Use settings from Folder
-
-# Finder settings and TotalFinder settings
-#   Not sure how to do this yet. Really want to.
-
-# Timestats chrome extension stats
-#   chrome-extension://ejifodhjoeeenihgfpjijjmpomaphmah/options.html#_options
-# 	gotta export into JSON through devtools:
-#     copy(JSON.stringify(localStorage, null, '  '))
-#     pbpaste > timestats-canary.json.txt
-
-# Current Chrome tabs via OneTab
-
-# software licenses like sublimetext
-
-
-### end of old machine backup
-##############################################################################################################
-
+echo "do not run this script in one go. hit ctrl-c NOW"
+read -n 1
 
 
 ##############################################################################################################
@@ -108,7 +46,6 @@ fi
 ##############################################################################################################
 
 
-
 ##############################################################################################################
 ### homebrew!
 
@@ -122,7 +59,6 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 ### end of homebrew
 ##############################################################################################################
-
 
 
 
@@ -144,9 +80,6 @@ npm install -g git-recent
 # sexy git diffs
 npm install -g diff-so-fancy
 
-# trash as the safe `rm` alternative
-npm install --global trash-cli
-
 # install better nanorc config
 # https://github.com/scopatz/nanorc
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
@@ -156,23 +89,8 @@ git clone https://github.com/rupa/z.git ~/code/z
 # consider reusing your current .z file if possible. it's painful to rebuild :)
 # z is hooked up in .bash_profile
 
-
-# github.com/thebitguru/play-button-itunes-patch
-# disable itunes opening on media keys
-git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
-
-
-# my magic photobooth symlink -> dropbox. I love it.
-# 	 + first move Photo Booth folder out of Pictures
-# 	 + then start Photo Booth. It'll ask where to put the library.
-# 	 + put it in Dropbox/public
-# 	* Now… you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
-# 	* then you grab public URL and send off your video message in a heartbeat.
-
-
 # for the c alias (syntax highlighted cat)
 sudo easy_install Pygments
-
 
 # change to bash 4 (installed by homebrew)
 BASHPATH=$(brew --prefix)/bin/bash
@@ -186,45 +104,32 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 # iterm with more margin! http://hackr.it/articles/prettier-gutter-in-iterm-2/
 #   (admittedly not as easy to maintain)
 
-
-# setting up the sublime symlink
-ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-
-
 ###
 ##############################################################################################################
 
-
-
 # improve perf of git inside of chromium checkout
 # https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
-
 sudo sysctl kern.maxvnodes=$((512*1024))
 echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
 
 # speed up git status
-git config status.showuntrackedfiles no
-git update-index --untracked-cache
 
+#default is:  git config status.showuntrackedfiles normal
+git config status.showuntrackedfiles no
+
+git update-index --untracked-cache
 
 ##############################################################################################################
 ### remaining configuration
 ###
 
-# go read mathias, paulmillr, gf3, alraa's dotfiles to see what's worth stealing.
-
-# prezto and antigen communties also have great stuff
-#   github.com/sorin-ionescu/prezto/blob/master/modules/utility/init.zsh
-
 # set up osx defaults
 #   maybe something else in here https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
 sh .osx
 
-# setup and run Rescuetime!
 
 ###
 ##############################################################################################################
-
 
 
 ##############################################################################################################
