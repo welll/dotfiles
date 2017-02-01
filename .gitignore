@@ -26,5 +26,6 @@ Thumbs.db
 # Compiled Python files
 *.pyc
 
-# random
-shilocation
+
+cron
+docs
