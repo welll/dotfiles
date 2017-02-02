@@ -41,13 +41,12 @@ brew install homebrew/dupes/screen
 brew install mtr
 
     # allow mtr to run without sudo
-    mtrlocation=$(brew info mtr | grep Cellar | sed -e 's/ (.*//') #  e.g. `/Users/avenuecode/.homebrew/Cellar/mtr/0.86`
+    mtrlocation=$(brew info mtr | grep Cellar | sed -e 's/ (.*//') #  e.g. `~/.homebrew/Cellar/mtr/0.86`
     sudo chmod 4755 $mtrlocation/sbin/mtr
     sudo chown root $mtrlocation/sbin/mtr
 
 
 # Install other useful binaries
-brew install the_silver_searcher
 brew install fzf
 
 brew install imagemagick --with-webp

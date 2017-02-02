@@ -14,7 +14,7 @@
 	reup = rebase-update # depot_tools specific
 
 [core]
-	excludesfile = /Users/avenuecode/.gitignore
+	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 
 [pager]
@@ -54,23 +54,6 @@
 [merge]
 	tool = opendiff
 
-# rewrites of repo paths
-[url "git@github.com:"]
-	insteadOf = "https://github.com/"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
-	pushInsteadOf = "https://github.com/"
-
-[url "git://github.com/"]
-	insteadOf = "github:"
-
-[url "git@gist.github.com:"]
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
-	
-[url "git://gist.github.com/"]
-	insteadOf = "gist:"
-
 # correct typos
 [help]
 	autocorrect = 1
@@ -83,16 +66,6 @@
 [include]
   path = ~/.gitconfig.local
 
-#[init]
-#	templatedir = ~/.git_template
-
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
-
-[fetch]
-	prune = true
 [diff]
 	compactionHeuristic = true
 [difftool "sourcetree"]
