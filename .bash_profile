@@ -8,28 +8,36 @@
 # file has read permission (for the user running the test)
 # source: http://tldp.org/LDP/abs/html/fto.html
 
-#,bash_prompt,exports,aliases,functions}; do
-for file in ~/.{extra}; do
+for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
 
-# to help sublimelinter etc with finding my PATHS
-case $- in
-   *i*) source ~/.extra
-esac
+##
+## hooking in other apps…
+##
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+update_terminal_cwd () 
+{ 
+    local SEARCH=' ';
+    local REPLACE='%20';
+    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}";
+    printf '\e]7;%s\a' "$PWD_URL"
+}
 
 # generic colouriser
-
-GRC=`which grc`
-if [ "$TERM" != dumb ] && [ -n "$GRC" ]
-    then
-        alias colourify="$GRC -es --colour=auto"
-        alias configure='colourify ./configure'
-        for app in {diff,make,gcc,g++,ping,traceroute}; do
-            alias "$app"='colourify '$app
-    done
-fi
+#GRC=`which grc`
+#if [ "$TERM" != dumb ] && [ -n "$GRC" ]
+#    then
+#        alias colourify="$GRC -es --colour=auto"
+#        alias configure='colourify ./configure'
+#        for app in {diff,make,gcc,g++,ping,traceroute}; do
+#            alias "$app"='colourify '$app
+#    done
+#fi
 
 ##
 # highlighting inside manpages and elsewhere
@@ -70,23 +78,15 @@ shopt -s cmdhist
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# ^ the only downside with this is [up] on the readline will go over all history not just this bash session.
-
-##
-## hooking in other apps…
-##
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
+# ^ the only downside with this is [up] on the readline will go over all history not
+# just this bash session.
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-
 # z beats cd most of the time. `brew install z`
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [ -s $zpath ] && source $zpath
-
 
 ##
 ## Completion…

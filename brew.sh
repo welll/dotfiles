@@ -54,6 +54,8 @@ brew install node # This installs `npm` too using the recommended installation m
 brew install pv
 brew install tree
 brew install ffmpeg --with-libvpx
+brew install git
+brew install hub
 
 brew install terminal-notifier
 brew install pidcat   # colored logcat guy
@@ -71,6 +73,8 @@ brew install tcpflow
 brew install tcpreplay
 brew install tcptrace
 brew install nvm
+brew install rvm
+
 brew install zsh
 
 # Remove outdated versions from the cellar
