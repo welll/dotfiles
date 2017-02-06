@@ -8,7 +8,8 @@
 # file has read permission (for the user running the test)
 # source: http://tldp.org/LDP/abs/html/fto.html
 
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+#,bash_prompt,exports,aliases,functions}; do
+for file in ~/.{extra}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
@@ -20,15 +21,15 @@ esac
 
 # generic colouriser
 
-#GRC=`which grc`
-#if [ "$TERM" != dumb ] && [ -n "$GRC" ]
-#    then
-#        alias colourify="$GRC -es --colour=auto"
-#        alias configure='colourify ./configure'
-#        for app in {diff,make,gcc,g++,ping,traceroute}; do
-#            alias "$app"='colourify '$app
-#    done
-#fi
+GRC=`which grc`
+if [ "$TERM" != dumb ] && [ -n "$GRC" ]
+    then
+        alias colourify="$GRC -es --colour=auto"
+        alias configure='colourify ./configure'
+        for app in {diff,make,gcc,g++,ping,traceroute}; do
+            alias "$app"='colourify '$app
+    done
+fi
 
 ##
 # highlighting inside manpages and elsewhere
@@ -75,7 +76,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ## hooking in other apps…
 ##
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
