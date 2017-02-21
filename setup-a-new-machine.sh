@@ -60,6 +60,14 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 ### end of homebrew
 ##############################################################################################################
 
+### Install Ruby
+rbenv install 2.4.0
+rbenv global 2.4.0
+ruby -v
+gem install rails -v 5.0.1
+rails -v
+
+
 
 
 ##############################################################################################################
@@ -113,10 +121,8 @@ sudo sysctl kern.maxvnodes=$((512*1024))
 echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
 
 # speed up git status
-
 #default is:  git config status.showuntrackedfiles normal
 git config status.showuntrackedfiles no
-
 git update-index --untracked-cache
 
 ##############################################################################################################
@@ -124,13 +130,28 @@ git update-index --untracked-cache
 ###
 
 # set up osx defaults
-#   maybe something else in here https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
 sh .osx
 
 
-###
 ##############################################################################################################
+### symlinks to link dotfiles into ~/
 
+open_apps() {
+  echo 'Install apps:'
+  echo 'Firefox:'
+  open http://www.mozilla.org/en-US/firefox/new/
+  echo 'Dropbox:'
+  open https://www.dropbox.com
+  echo 'Chrome:'
+  open https://www.google.com/intl/en/chrome/browser/
+  echo 'Skype:'
+  open http://www.skype.com/en/download-skype/skype-for-computer/
+}
+
+echo 'Should I give you links for system applications (e.g. Skype, Dropbox, Firefox)?'
+echo 'n / y'
+read give_links
+[[ "$give_links" == 'y' ]] && open_apps
 
 ##############################################################################################################
 ### symlinks to link dotfiles into ~/
@@ -141,8 +162,4 @@ sh .osx
 
 # symlink it up!
 ./symlink-setup.sh
-
-# add manual symlink for .ssh/config and probably .config/fish
-
-###
-##############################################################################################################
+echo "Add manual symlink for .ssh/config"

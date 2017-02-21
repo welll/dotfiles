@@ -50,7 +50,6 @@ brew install mtr
 brew install fzf
 
 brew install imagemagick --with-webp
-brew install node # This installs `npm` too using the recommended installation method
 brew install pv
 brew install tree
 brew install ffmpeg --with-libvpx
@@ -72,8 +71,18 @@ brew install sqlmap
 brew install tcpflow
 brew install tcpreplay
 brew install tcptrace
+
+#node
+brew install node # This installs `npm` too using the recommended installation method
 brew install nvm
-brew install rvm
+
+#ruby
+brew install rbenv 
+brew install ruby-build
+
+### Install Postgres
+brew install postgresql
+
 
 brew install zsh
 

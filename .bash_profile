@@ -138,3 +138,5 @@ shopt -s dirspell 2> /dev/null
 
 # Turn on recursive globbing (enables ** to recurse all directories)
 shopt -s globstar 2> /dev/null
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

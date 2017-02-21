@@ -18,6 +18,14 @@ function la(){
     }'
 }
 
+function lock(){
+  /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+}
+
+function sniff(){
+  sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'
+}
+
 # List all files, long format, colorized, permissions in octal
 function la(){
  	ls -l  "$@" | awk '
@@ -31,13 +39,17 @@ function la(){
     }'
 }
 
+function diff {
+  git --no-pager diff --color=auto --no-ext-diff --no-index "$@"
+}
+
 # cd into whatever is the forefront Finder window.
-cdf() {  # short for cdfinder
+function cdf() {  # short for cdfinder
   cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
 # git commit browser. needs fzf
-log() {
+function log() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \
@@ -47,7 +59,7 @@ log() {
 }
 
 # Copy w/ progress
-cp_p () {
+function cp_p () {
   rsync -WavP --human-readable --progress $1 $2
 }
 
