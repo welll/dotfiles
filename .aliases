@@ -38,3 +38,13 @@ alias killPhantom='pgrep phantomjs-darwin | xargs kill -QUIT'
 alias pull='git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias push='git push origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias pushr='git push origin "$(git rev-parse --abbrev-ref HEAD)":refs/for/"$(git rev-parse --abbrev-ref HEAD)"'
+
+
+#alias github='open "https://jaxf-github.fanatics.corp/${$(echo "${${$(git remote get-url origin)#*:}%.git}")}/tree/${$(git rev-parse --abbrev-ref HEAD)}"'
+#alias gitdiff='open "https://jaxf-github.fanatics.corp/${$(echo "${${$(git remote get-url origin)#*:}%.git}")}/compare/${$(git rev-parse --abbrev-ref HEAD)}"'
+#alias circleci='open "https://circleci.fanaticslabs.com/gh/${$(echo "${${$(git remote get-url origin)#*:}%.git}")}/tree/${$(git rev-parse --abbrev-ref HEAD)}"'
+
+
+alias github='open "https://jaxf-github.fanatics.corp/${$(echo "${${${$(git remote get-url origin)#*:}%.git}#*.corp/}")}/tree/${$(git rev-parse --abbrev-ref HEAD)}"'
+alias gitdiff='open "https://jaxf-github.fanatics.corp/${$(echo "${${${$(git remote get-url origin)#*:}%.git}#*.corp/}")}/compare/${$(git rev-parse --abbrev-ref HEAD)}"'
+alias circleci='open "https://circleci.fanaticslabs.com/gh/${$(echo "${${${$(git remote get-url origin)#*:}%.git}#*.corp/}")}/tree/${$(git rev-parse --abbrev-ref HEAD)}"'

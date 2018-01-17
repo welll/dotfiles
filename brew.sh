@@ -85,6 +85,8 @@ brew install postgresql
 
 
 brew install zsh
+brew install z
 
 # Remove outdated versions from the cellar
 brew cleanup
+

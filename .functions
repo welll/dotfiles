@@ -173,9 +173,15 @@ function nullify() {
   "$@" >/dev/null 2>&1
 }
 
+function updatedb() {
+	sudo /usr/libexec/locate.updatedb
+}
 
 # visual studio code. a la `subl`
-function visualcode () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCodeInsiders" --args $*; }
+function visualcode () { 
+	VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCodeInsiders" 
+--args $*; 
+}
 
 # `shellswitch [bash |zsh]`
 #   Must be in /etc/shells

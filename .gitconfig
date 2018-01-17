@@ -13,6 +13,9 @@
 
 	reup = rebase-update # depot_tools specific
 
+[difftool "kdiff3"]
+    path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -52,7 +55,7 @@
 
 # git mergetool
 [merge]
-	tool = opendiff
+	tool = kdiff3
 
 # correct typos
 [help]
@@ -75,5 +78,15 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [user]
-	name = Wellington Soares
+	name = welll
 	email = well.cco@gmail.com
+[http]
+[http]
+	sslVerify = false
+[mergetool "kdiff3"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
